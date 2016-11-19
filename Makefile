@@ -1,12 +1,13 @@
 BUILD_DIR?=dist
 
-LAUNCHER:=src/launcher
+HEADER:=src/header
 SRCS:=$(wildcard src/*.sh)
+MAIN:=src/main
 
 SCRIPT:=$(BUILD_DIR)/freerip.sh
 CONF:=$(BUILD_DIR)/freerip.conf
 
-$(SCRIPT): $(SRCS) $(LAUNCHER)
+$(SCRIPT): $(HEADER) $(SRCS) $(MAIN)
 	mkdir -p $(dir $@)
 	cat $^ > $@
 	chmod +x $@

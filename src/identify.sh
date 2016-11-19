@@ -2,5 +2,5 @@
 
 identify() {
     CDEV=$1
-    TITLE=$(echo $CDEV | sed 's|iso9660/||')
+    DISCNAME=$(echo $CDEV | sed 's|iso9660/||')
 }

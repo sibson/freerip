@@ -1,0 +1,15 @@
+
+
+main() {
+    identify $CDEV
+
+    local logfile=$LOGDIR/$DISCNAME.log
+
+    echo "** Logging to $logfile ..."
+
+    rip-video "/mnt/TV Shows/$DISCNAME" 2>&1 | tee $logfile
+
+    eject $DEVICE
+}
+
+main

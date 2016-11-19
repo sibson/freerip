@@ -1,0 +1,9 @@
+#!/usr/local/bin/bash -e
+
+# Config
+DEVICE=/dev/cd0
+LOGDIR=/mnt/freerip/logs
+DISCNAME=UNKNOWN
+
+# arg parsing
+CDEV="$1"

@@ -1,5 +1,26 @@
 
+rip-title() {
+    local title="$1"
+    shift 1
+    local dest="$*"
+
+    local target="${dest}_${title}.mkv"
+    echo "** Ripping $title to $target ..."
+
+    HandBrakeCLI --title $title --input $DEVICE --output "$target" --preset \"High Profile\" \
+        --quality 23 --encoder-preset slow \
+        --custom-anamorphic --keep-display-aspect --decomb \
+        --optimize -native-language english
+}
+
 rip-video() {
-    OUTPUT="$1"
-    HandBrakeCLI --main-feature -i $DEVICE -o "$OUTPUT" -e x265 -q 23 --encoder-preset slow -E av_aac --custom-anamorphic --keep-display-aspect -O -Neng -s1 --decomb
+    local dest="$1"
+
+    # + title 2:
+    echo "** Finding titles to rip ..."
+    local titles=$(HandBrakeCLI --input $DEVICE --output /dev/stdout --title 0 --min-duration 300 2>&1 | grep '+ title' | cut -w -f 3 | cut -d : -f 1 | tr '\n' ' ')
+    echo "** Found: $titles"
+    for title in $titles; do
+        rip-title $title $dest
+    done
 }
