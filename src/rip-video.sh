@@ -4,13 +4,10 @@ rip-title() {
     shift 1
     local dest="$*"
 
-    local target="${dest}_${title}.mkv"
+    local target="${dest}_${title}.mp4"
     echo "** Ripping $title to $target ..."
 
-    HandBrakeCLI --title $title --input $DEVICE --output "$target" --preset \"High Profile\" \
-        --quality 23 --encoder-preset slow \
-        --custom-anamorphic --keep-display-aspect --decomb \
-        --optimize -native-language english
+    HandBrakeCLI --title $title --input $DEVICE --output "$target" --preset "High Profile" --optimize
 }
 
 rip-video() {

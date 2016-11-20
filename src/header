@@ -2,8 +2,9 @@
 
 # Config
 DEVICE=/dev/cd0
-LOGDIR=/mnt/freerip/logs
 DISCNAME=UNKNOWN
+OUTPUTDIR=/mnt/freerip
+LOGDIR=${OUTPUTDIR}/logs
 
 # arg parsing
 CDEV="$1"
