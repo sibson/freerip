@@ -1,0 +1,7 @@
+#!/bin/sh
+# Find the correct jail number of jexec, as it can change between systems,
+# reboots and even jail restarts
+
+JAIL_NUM=`jls | grep 'freerip\|handbrake' | col | cut -f 1`
+
+jexec $JAIL_NUM /usr/local/bin/freerip.sh $*
